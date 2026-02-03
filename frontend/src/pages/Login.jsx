@@ -7,17 +7,25 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    try {
-      const res = await API.post("/login", { email, password });
-      localStorage.setItem("token", res.data.token);
-      navigate("/");
-    } catch (err) {
-      alert("Invalid credentials");
-      console.error(err);
-    }
-  };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await API.post("/login", {
+      email,
+      password,
+    });
+
+    localStorage.setItem("token", res.data.token);
+    navigate("/");
+  } catch (error) {
+    alert(
+      error.response?.data?.message || "Login failed"
+    );
+    console.error(error);
+  }
+};
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -27,10 +35,6 @@ export default function Login() {
   );
 }
 
-    // TEMP: fake login success
-    localStorage.setItem("token", "demo-token");
-    navigate("/");
-  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-600 to-blue-800">
