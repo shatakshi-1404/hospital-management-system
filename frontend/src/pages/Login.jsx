@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API from "../api/api";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -8,6 +9,23 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    try {
+      const res = await API.post("/login", { email, password });
+      localStorage.setItem("token", res.data.token);
+      navigate("/");
+    } catch (err) {
+      alert("Invalid credentials");
+      console.error(err);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      {/* inputs */}
+      <button type="submit">Login</button>
+    </form>
+  );
+}
 
     // TEMP: fake login success
     localStorage.setItem("token", "demo-token");
