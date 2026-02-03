@@ -38,7 +38,7 @@ export default function Login() {
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-600 to-blue-800">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800">
       <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl p-8">
         <h1 className="text-3xl font-bold text-center text-blue-700 mb-2">
           Hospital Admin
