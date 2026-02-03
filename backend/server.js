@@ -11,7 +11,10 @@ const app = express();
 connectDB();   // ⬅️ AFTER dotenv
 
 app.use(cors({
-  origin: "*", // later restrict to frontend URL
+  origin: [
+    "https://hospital-management-system-mjr8781j0.vercel.app/", // deployed frontend
+    "http://localhost:5173"               // local dev
+  ],
   credentials: true
 }));
 app.use(express.json());

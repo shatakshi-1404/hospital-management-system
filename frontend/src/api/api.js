@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "https://hospital-management-system-1-g8hn.onrender.com",
+  baseURL: import.meta.env.VITE_API_URL || "https://hospital-management-system-mjr8781j0.vercel.app/",
 });
 
 export const loginUser = (data) => API.post("/auth/login", data);
