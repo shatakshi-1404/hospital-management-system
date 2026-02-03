@@ -1,4 +1,6 @@
-require("dotenv").config();   // ⬅️ MUST BE FIRST
+import cors from "cors";
+require("dotenv").config();
+const MONGO_URI = process.env.MONGO_URI;
 
 const express = require("express");
 const cors = require("cors");
@@ -8,7 +10,10 @@ const app = express();
 
 connectDB();   // ⬅️ AFTER dotenv
 
-app.use(cors());
+app.use(cors({
+  origin: "*", // later restrict to frontend URL
+  credentials: true
+}));
 app.use(express.json());
 
 app.use("/api/auth", require("./routes/authRoutes"));
