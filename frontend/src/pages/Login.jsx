@@ -2,40 +2,27 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api/api";
 
-
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const res = await API.post("/login", {
-      email,
-      password,
-    });
+    try {
+      const res = await API.post("/login", {
+        email,
+        password,
+      });
 
-    localStorage.setItem("token", res.data.token);
-    navigate("/");
-  } catch (error) {
-    alert(
-      error.response?.data?.message || "Login failed"
-    );
-    console.error(error);
-  }
-};
-
-
-  return (
-    <form onSubmit={handleSubmit}>
-      {/* inputs */}
-      <button type="submit">Login</button>
-    </form>
-  );
-}
-
+      localStorage.setItem("token", res.data.token);
+      navigate("/");
+    } catch (error) {
+      alert(error.response?.data?.message || "Login failed");
+      console.error(error);
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800">
@@ -43,6 +30,7 @@ export default function Login() {
         <h1 className="text-3xl font-bold text-center text-blue-700 mb-2">
           Hospital Admin
         </h1>
+
         <p className="text-center text-slate-500 mb-8">
           Login to continue
         </p>
@@ -90,4 +78,4 @@ export default function Login() {
       </div>
     </div>
   );
-
+}
